@@ -1,7 +1,7 @@
-import ExpenseItem from './components/ExpenseItem';
+import ExpenseItem from './components/Expenses/ExpenseItem';
 import logo from './logo.svg';
 import './App.css';
-import ExpensesList from "./components/ExpensesList";
+import ExpensesList from "./components/Expenses/ExpensesList";
 
 function App() {
 
