@@ -5,8 +5,10 @@ import {click} from "@testing-library/user-event/dist/click";
 
 const ExpenseItem = (props) => {
 
+  let title = props.title;
+
   const clickHandler = () => {
-    console.log('Clicked!!!');
+    title = 'Updated!';
   }
 
   return (
