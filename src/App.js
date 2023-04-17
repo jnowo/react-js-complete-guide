@@ -1,5 +1,3 @@
-import ExpenseItem from './components/Expenses/ExpenseItem';
-import logo from './logo.svg';
 import './App.css';
 import ExpensesList from "./components/Expenses/ExpensesList";
 import NewExpense from "./components/NewExpense/NewExpense";
