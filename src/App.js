@@ -1,5 +1,5 @@
 import './App.css';
-import ExpensesList from "./components/Expenses/ExpensesList";
+import Expenses from "./components/Expenses/Expenses";
 import NewExpense from "./components/NewExpense/NewExpense";
 import {useState} from "react";
 
@@ -38,7 +38,7 @@ function App() {
   return (
     <div className="App">
       <NewExpense onAddExpense={addExpenseHandler}/>
-      <ExpensesList
+      <Expenses
         expenses={expenses}
       />
     </div>
