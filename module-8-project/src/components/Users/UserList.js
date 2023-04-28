@@ -1,4 +1,4 @@
-import Card from "../UI/Card";
+import {Card} from "../UI/Card";
 import styles from './UserList.module.css';
 
 export const UserList = props => {
@@ -12,5 +12,4 @@ export const UserList = props => {
       </ul>
     </Card>
   )
-
 }
