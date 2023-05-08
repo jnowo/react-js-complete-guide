@@ -1,14 +1,29 @@
-import classes from "../../Login/Login.module.css";
-import React from "react";
-import inputStyles from './Input.module.css'
+import React, {useEffect, useRef, useImperativeHandle} from "react";
+import styles from './Input.module.css'
 
-export const Input = (props) => {
+export const Input = React.forwardRef((props, ref) => {
+
+  const inputRef = useRef();
+
+  const activate = () => {
+    inputRef.current.focus();
+  }
+
+  useImperativeHandle(
+    ref,
+    () => {
+      return {focus: activate}
+    }
+  );
+
+
   return (
     <div
-      className={`${inputStyles.control} ${props.isValid === false ? inputStyles.invalid : ''}`}
+      className={`${styles.control} ${props.isValid === false ? styles.invalid : ''}`}
     >
       <label htmlFor={props.id}>{props.label}</label>
       <input
+        ref={inputRef}
         type={props.type}
         id={props.id}
         value={props.value}
@@ -17,4 +32,4 @@ export const Input = (props) => {
       />
     </div>
   )
-}
+});
