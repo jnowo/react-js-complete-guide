@@ -1,4 +1,5 @@
 import {useRef, useState} from "react";
+import {blur} from "@testing-library/user-event/dist/blur";
 
 const SimpleInput = (props) => {
   const nameInputRef = useRef();
@@ -8,6 +9,14 @@ const SimpleInput = (props) => {
 
   const nameInputChangeHandler = event => {
     setEnteredName(event.target.value);
+  }
+
+  const nameInputBlurHandler = event => {
+    setEnteredNameTouched(true);
+
+    if (enteredName.trim() === '') {
+      setEnteredNameIsValid(false);
+    }
   }
 
   const formSubmissionHandler = event => {
@@ -43,6 +52,7 @@ const SimpleInput = (props) => {
                id='name'
                onChange={nameInputChangeHandler}
                value={enteredName}
+               onBlur={nameInputBlurHandler}
         />
       </div>
       {nameInputIsInvalid && <p className='error-text'>Name must not be empty.</p>}
