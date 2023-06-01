@@ -14,7 +14,7 @@ const counterSlice = createSlice({
       state.counter--;
     },
     increase(state, action) {
-      state.counter = state.counter + action.amount;
+      state.counter = state.counter + action.payload;
     },
     toggleCounter(state) {
       state.showCounter = !state.showCounter;
@@ -22,8 +22,10 @@ const counterSlice = createSlice({
   }
 })
 
+// counterSlice.actions.toggleCounter //will create action objects (action creators) with unique identifier behind the scene
 export const store = configureStore({
   reducer: counterSlice.reducer //in this case we can use only this reducer (we don't have more)
   // reducer: {counter: counterSlice.reducer} //configure store will merge into on big reducer, we can use this approach when we have more reducers
 });
 
+export const counterActions = counterSlice.actions;
