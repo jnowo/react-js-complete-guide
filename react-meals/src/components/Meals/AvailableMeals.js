@@ -11,7 +11,7 @@ export const AvailableMeals = (params) => {
 
   useEffect(() => {
     const fetchMeals = async () => {
-      const response = await fetch('https://react-hooks-b996c-default-rtdb.firebaseio.com/meals.json');
+      const response = await fetch(`${process.env.REACT_APP_FIREBASE_URL}meals.json`);
 
       if (!response.ok) {
         throw new Error('Something went wrong!');
