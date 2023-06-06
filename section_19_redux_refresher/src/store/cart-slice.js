@@ -1,4 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
+import {uiActions} from "./ui-slice";
 
 const initialCartState = {items: [], itemsCounter: 0};
 
@@ -34,6 +35,45 @@ const cartSlice = createSlice({
     }
   }
 });
+
+export const sendCartData = (cart) => {
+  return async (dispatch) => {
+    dispatch(uiActions.showNotification({
+      status: 'pending',
+      title: 'Sending data...',
+      message: 'Sending cart data!',
+    }));
+
+    const sendRequest = async () => {
+      const response = await fetch(`${process.env.REACT_APP_FIREBASE_URL}cart.json`, {
+        method: 'PUT',
+        body: JSON.stringify(cart),
+      });
+
+      if (!response.ok) {
+        throw new Error('Sending cart data failed.');
+      }
+    };
+
+    try {
+      await sendRequest();
+
+      dispatch(uiActions.showNotification({
+        status: 'success',
+        title: 'Success',
+        message: 'Send cart data successfully!',
+      }));
+    } catch (error) {
+      sendCartData().catch(error => {
+        dispatch(uiActions.showNotification({
+          status: 'error',
+          title: 'Error',
+          message: 'Send cart data failed!',
+        }));
+      });
+    }
+  };
+}
 
 export default cartSlice.reducer;
 
