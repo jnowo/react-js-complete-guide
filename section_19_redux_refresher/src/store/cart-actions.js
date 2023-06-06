@@ -15,12 +15,9 @@ export const fetchCartData = () => {
 
     try {
       const cartData = await fetchData();
-      dispatch(cartActions.replaceCart(cartData));
-
-      dispatch(uiActions.showNotification({
-        status: 'success',
-        title: 'Success',
-        message: 'Fetching cart data succeed!',
+      dispatch(cartActions.replaceCart({
+        items: cartData.items || [],
+        itemsCounter: cartData.itemsCounter,
       }));
     } catch (error) {
       dispatch(uiActions.showNotification({
@@ -43,7 +40,7 @@ export const sendCartData = (cart) => {
     const sendRequest = async () => {
       const response = await fetch(`${process.env.REACT_APP_FIREBASE_URL}cart.json`, {
         method: 'PUT',
-        body: JSON.stringify(cart),
+        body: JSON.stringify({items: cart.items, itemsCounter: cart.itemsCounter}),
       });
 
       if (!response.ok) {
