@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 
-const initialCartState = {items: [], itemsCounter: 0, isVisible: false};
+const initialCartState = {items: [], itemsCounter: 0};
 
 const cartSlice = createSlice({
   name: 'cart',
@@ -31,9 +31,6 @@ const cartSlice = createSlice({
         item.quantity--;
         item.total -= item.price;
       }
-    },
-    toggleCartVisibility(state) {
-      state.isVisible = !state.isVisible;
     }
   }
 });
