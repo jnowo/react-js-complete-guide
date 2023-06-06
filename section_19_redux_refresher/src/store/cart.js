@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 
-const initialCartState = {items: []};
+const initialCartState = {items: [], itemsCounter: 0, isVisible: false};
 
 const cartSlice = createSlice({
   name: 'cart',
@@ -10,7 +10,7 @@ const cartSlice = createSlice({
       const item = state.items.find(item => item.id === action.payload.id);
       if (item) {
         item.quantity++;
-        item.total += action.payload.price;
+        item.total += item.price;
       } else {
         state.items.push({
           id: action.payload.id,
@@ -19,17 +19,22 @@ const cartSlice = createSlice({
           total: action.payload.price,
           title: action.payload.title
         });
+        state.itemsCounter++;
       }
     },
     removeItemFromCart(state, action) {
-      const item = state.items.find(item => item.id === action.payload);
+      const item = state.items.find(item => item.id === action.payload.id);
       if (item.quantity === 1) {
-        state.items = state.items.filter(item => item.id !== action.payload);
+        state.items = state.items.filter(item => item.id !== action.payload.id);
+        state.itemsCounter--;
       } else {
         item.quantity--;
         item.total -= item.price;
       }
     },
+    toggleCartVisibility(state) {
+      state.isVisible = !state.isVisible;
+    }
   }
 });
 
