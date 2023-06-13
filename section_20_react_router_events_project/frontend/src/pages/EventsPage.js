@@ -1,19 +1,28 @@
-import {NavLink} from "react-router-dom";
+import {useEffect, useState} from 'react';
 
-const DUMMY_EVENTS = [
-  {id: '1', name: 'Test event 1'},
-  {id: '2', name: 'Test event 2'},
-  {id: '3', name: 'Test event 3'},
-  {id: '4', name: 'Test event 4'},
-];
+import EventsList from '../components/EventsList';
 
 export const EventsPage = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [fetchedEvents, setFetchedEvents] = useState();
+  const [error, setError] = useState();
+
+  useEffect(() => {
+    async function fetchEvents() {
+      setIsLoading(true);
+
+      setIsLoading(false);
+    }
+
+    fetchEvents();
+  }, []);
   return (
-    <section>
-      <h1>Events Page</h1>
-      <ul>
-        {DUMMY_EVENTS.map(event => <li key={event.id}><NavLink to={event.id}> {event.name}</NavLink></li>)}
-      </ul>
-    </section>
+    <>
+      <div style={{textAlign: 'center'}}>
+        {isLoading && <p>Loading...</p>}
+        {error && <p>{error}</p>}
+      </div>
+      {!isLoading && fetchedEvents && <EventsList events={fetchedEvents}/>}
+    </>
   );
 }
