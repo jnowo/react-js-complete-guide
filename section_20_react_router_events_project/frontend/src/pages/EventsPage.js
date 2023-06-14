@@ -20,7 +20,8 @@ export const loader = async () => {
 
   if (!response.ok) {
     // return {isError: true, message: 'Something went wrong!'};
-    throw new Error('Something went wrong!'); //react-router-dom will catch this error and display the closest errorElment (will bubble up)
+    // throw new Error('Something went wrong!'); //react-router-dom will catch this error and display the closest errorElment (will bubble up)
+    throw new Response(JSON.stringify({message: 'Could not fetch events!'}), {status: 500});
   } else {
     return response;
   }
