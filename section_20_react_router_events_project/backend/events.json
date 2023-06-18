@@ -1,11 +1,1 @@
-{
-  "events": [
-    {
-      "id": "e1",
-      "title": "A dummy event",
-      "date": "2023-02-22",
-      "image": "https://blog.hubspot.de/hubfs/Germany/Blog_images/Optimize_Marketing%20Events%20DACH%202021.jpg",
-      "description": "Join this amazing event and connect with fellow developers."
-    }
-  ]
-}
+{"events":[{"title":"Second new event","description":"Super event!","date":"2023-06-30","image":"https://deviniti.com/app/uploads/2021/10/09-20_DM-8186_EVENTS_01_MAIN-2-1024x682.png","id":"f2c1a2f1-6137-4c9f-ab02-b346b78622ac"},{"title":"New event","description":"Awesome event!","date":"2023-06-24","image":"https://bq-events.pl/wp-content/uploads/2018/01/muzyka-event-bankiet-warszaw.jpg","id":"557af818-9135-4ae0-994c-6a1fabe01f66"},{"id":"e1","title":"A dummy event","date":"2023-02-22","image":"https://blog.hubspot.de/hubfs/Germany/Blog_images/Optimize_Marketing%20Events%20DACH%202021.jpg","description":"Join this amazing event and connect with fellow developers."}]}
