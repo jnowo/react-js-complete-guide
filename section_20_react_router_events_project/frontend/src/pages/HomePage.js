@@ -1,7 +1,9 @@
+import PageContent from "../components/PageContent";
+
 export const HomePage = () => {
   return (
-    <section>
-      <h1>Home Page</h1>
-    </section>
+    <PageContent title='Welcome'>
+      <p>Browse all our amazing events!</p>
+    </PageContent>
   );
 }
