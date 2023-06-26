@@ -116,3 +116,7 @@ button:hover {
   font-size: 0.85rem;
   color: #c2e9e0;
 }
+
+.info {
+  text-align: center;
+}
