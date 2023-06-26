@@ -4,13 +4,14 @@ const initialState = {
   'current-savings': 10000,
   'yearly-contribution': 1200,
   'expected-return': 7,
-  'duration': 10,
+  duration: 10,
 };
-export const Form = () => {
+export const Form = (props) => {
 
   const [userInput, setUserInput] = useState(initialState);
   const submitHandler = (event) => {
     event.preventDefault();
+    props.onCalculate(userInput);
   }
 
   const resetHandler = () => {

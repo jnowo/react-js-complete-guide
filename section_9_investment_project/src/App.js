@@ -5,14 +5,16 @@ import {Header} from "./components/Header";
 
 function App() {
 
-  const [yearlyData, setYearlyData] = useState([]);
+  const [userInput, setUserInput] = useState(null);
 
   const calculateHandler = (userInput) => {
-    // Should be triggered when form is submitted
-    // You might not directly want to bind it to the submit event on the form though...
+    setUserInput(userInput);
+  };
 
-    const data = [];
 
+  const yearlyData = [];
+
+  if (userInput) {
     let currentSavings = +userInput['current-savings']; // feel free to change the shape of this input object!
     const yearlyContribution = +userInput['yearly-contribution']; // as mentioned: feel free to change the shape...
     const expectedReturn = +userInput['expected-return'] / 100;
@@ -22,7 +24,7 @@ function App() {
     for (let i = 0; i < duration; i++) {
       const yearlyInterest = currentSavings * expectedReturn;
       currentSavings += yearlyInterest + yearlyContribution;
-      data.push({
+      yearlyData.push({
         // feel free to change the shape of the data pushed to the array!
         year: i + 1,
         yearlyInterest: yearlyInterest,
@@ -30,17 +32,13 @@ function App() {
         yearlyContribution: yearlyContribution,
       });
     }
-
-    setYearlyData(...data);
-
-    // do something with yearlyData ...
-  };
+  }
 
 
   return (
     <div>
       <Header/>
-      <Form/>
+      <Form onCalculate={calculateHandler}/>
       {yearlyData.length === 0 && <p className="info">No data yet.</p>}
       {yearlyData.length > 0 && <Results/>}
     </div>
