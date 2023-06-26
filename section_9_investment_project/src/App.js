@@ -39,8 +39,8 @@ function App() {
     <div>
       <Header/>
       <Form onCalculate={calculateHandler}/>
-      {yearlyData.length === 0 && <p className="info">No data yet.</p>}
-      {yearlyData.length > 0 && <Results/>}
+      {!userInput && <p className="info">No data yet.</p>}
+      {userInput && <Results data={yearlyData} initialInvestment={userInput['current-savings']}/>}
     </div>
   );
 }
