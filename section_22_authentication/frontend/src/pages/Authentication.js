@@ -42,7 +42,12 @@ export const action = async ({request}) => {
     throw json({message: 'Could not authenticate you!'}, {status: 500});
   }
 
-  //soon manage token
+  //manage token
+
+  const respData = await response.json();
+  const token = respData.token;
+
+  localStorage.setItem('token', token);
 
   return redirect('/');
 }
