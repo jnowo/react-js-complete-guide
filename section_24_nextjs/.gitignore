@@ -7,6 +7,7 @@ node_modules
 /docs
 .env
 package-lock.json
+.next
 
 # testing
 /coverage
