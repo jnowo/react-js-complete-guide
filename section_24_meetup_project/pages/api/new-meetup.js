@@ -2,10 +2,24 @@
 
 // /api/new-meetup
 
-export const handler = (req, res) => {
+import {MongoClient} from "mongodb";
+
+export const handler = async (req, res) => {
   if (req.method === 'POST') {
     const data = req.body;
 
-    const {title, image, address, description} = data;
+    const client = await MongoClient.connect('mongodb://udemy-react;Udemy123!@192.168.88.240:27017/udemy-react');
+    const db = client.db();
+
+    const meetupsCollection = db.collection('meetups');
+
+    const result = await meetupsCollection.insertOne({data});
+
+    console.log(result);
+
+    await client.close();
+
+    res.status(201).json({message: 'Meetup inserted!'});
+
   }
 }
