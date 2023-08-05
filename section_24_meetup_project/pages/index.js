@@ -17,7 +17,7 @@ const DUMMY_MEETUPS = [
     description: 'This is a second meetup!'
   },
   {
-    id: 'm1',
+    id: 'm3',
     title: 'A Third Meetup',
     image: 'https://warsawtour.pl/wp-content/uploads/2018/07/Centrum-fot.-Zbigniew-Pan%C3%B3w-pzstudio.pl_.jpg',
     address: 'Some address 7, 12345 Some City',
