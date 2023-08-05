@@ -3,12 +3,13 @@
 // /api/new-meetup
 
 import {MongoClient} from "mongodb";
+import {mongoCredentials} from "../../data/mongo-utils";
 
 async function handler(req, res) {
   if (req.method === 'POST') {
     const data = req.body;
 
-    const client = await MongoClient.connect('mongodb://udemy-react;Udemy123!@192.168.88.240:27017/udemy-react');
+    const client = await MongoClient.connect(mongoCredentials);
     const db = client.db();
 
     const meetupsCollection = db.collection('meetups');
