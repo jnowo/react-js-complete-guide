@@ -11,6 +11,24 @@ function MeetupDetails() {
   );
 }
 
+export async function getStaticPaths() {
+  return {
+    fallback: true, //tells next.js weather paths contains all supported values or just some of theme
+    paths: [
+      {
+        params: {
+          meetupId: 'm1'
+        }
+      },
+      {
+        params: {
+          meetupId: 'm2'
+        }
+      },
+    ]
+  }
+}
+
 export async function getStaticProps(context) {
   //fetch data for single meetup
 
