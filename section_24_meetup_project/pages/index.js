@@ -31,17 +31,27 @@ const HomePage = (props) => {
   )
 }
 
-export function getStaticProps() {
-  //ex. fetch data from API.
-  //'Moving' data fetching from client side to server side (during build process side)
-  //Now data is not fetched on the second render of component cycle but
-  // initially before this page is pre rendered during build process
+export async function getServerSideProps(context) {
+  //page is re-generated for every incoming request
+
+  const req = context.req;
+  const res = context.res;
+
   return {
     props: {
       meetups: DUMMY_MEETUPS
-    },
-    revalidate: 10
-  };
+    }
+  }
 }
+
+// export function getStaticProps() {
+//   //ex. fetch data from API.
+//   return {
+//     props: {
+//       meetups: DUMMY_MEETUPS
+//     },
+//     revalidate: 10
+//   };
+// }
 
 export default HomePage;
