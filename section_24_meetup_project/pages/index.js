@@ -1,5 +1,4 @@
 import MeetupList from "../components/meetups/MeetupList";
-import {useEffect, useState} from "react";
 
 
 const DUMMY_MEETUPS = [
@@ -25,17 +24,23 @@ const DUMMY_MEETUPS = [
     description: 'This is a third meetup!'
   },
 ]
-const HomePage = () => {
-  const [loadedMeetups, setLoadedMeetups] = useState([]);
-
-  useEffect(() => {
-
-    setLoadedMeetups(DUMMY_MEETUPS);
-  }, []);
+const HomePage = (props) => {
 
   return (
-    <MeetupList meetups={loadedMeetups}/>
+    <MeetupList meetups={props.meetups}/>
   )
+}
+
+export function getStaticProps() {
+  //ex. fetch data from API.
+  //'Moving' data fetching from client side to server side (during build process side)
+  //Now data is not fetched on the second render of component cycle but
+  // initially before this page is pre rendered during build process
+  return {
+    props: {
+      meetups: DUMMY_MEETUPS
+    }
+  };
 }
 
 export default HomePage;
