@@ -32,7 +32,7 @@ export async function getStaticPaths() {
   await client.close();
 
   return {
-    fallback: false, //tells next.js weather paths contains all supported values or just some of theme
+    fallback: blocking, //tells next.js weather paths contains all supported values or just some of theme
     paths: meetups.map(meetup => ({
       params: {meetupId: meetup._id.toString()}
     })),
