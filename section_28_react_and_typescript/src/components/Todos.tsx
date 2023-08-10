@@ -1,8 +1,11 @@
-export const Todos = () => {
+import React from "react";
+
+export const Todos: React.FC<{ items: string[] }> = (props) => {
     return (
         <ul>
-            <li>Lear React</li>
-            <li>Lear TypeScript</li>
+            {props.items.map((item) => (
+                <li key={item}>{item}</li>
+            ))}
         </ul>
     )
 }
