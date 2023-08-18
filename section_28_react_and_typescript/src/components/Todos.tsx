@@ -1,14 +1,17 @@
-import {FC} from "react";
-import {Todo} from "../models/Todo";
+import {FC, useContext} from "react";
 import {TodoItem} from "./TodoItem";
 import classes from "./Todos.module.css";
+import {TodosContext} from "../store/todos-context";
 
 //FC - function that act as a functional component
-export const Todos: FC<{ items: Todo[] }> = (props) => {
+export const Todos: FC = () => {
+    const todosContext = useContext(TodosContext);
     return (
         <ul className={classes.todos}>
-            {props.items.map((todo) => (
-                <TodoItem key={todo.id} text={todo.text}/>
+            {todosContext.items.map((todo) => (
+                <TodoItem key={todo.id}
+                          text={todo.text}
+                          onRemoveTodo={todosContext.removeTodo.bind(null, todo.id)}/>
             ))}
         </ul>
     )
